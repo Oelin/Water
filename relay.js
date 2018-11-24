@@ -1,6 +1,10 @@
-/* relay.js, 
+/* relay.js, mediates a virtual link between a clients (browsers) and remote Internet hosts. 
+This is achived by mapping data sent via web sockets to TCP stream sockets and visa-versa. As
+the Internet's principal technology is TCP/IP, such a mapping provides a channel by which 
+communication with any accessable Internet device, service or application is possible. */
 
 var io = require('socket.io')(80);
+
 var net = require('net');
 
 
@@ -9,28 +13,23 @@ io.on('connection', function(socket)
 {
     var remote;
     
-    
-    
     socket.on('create', function(address) 
     {
         remote = net.createConnection(address);
     
         remote.on('data', function(buffer) 
         {
-            var text = buffer.toString('utf-8');
-            socket.emit('reply', text);
+            var data = buffer.toString();
+            
+            socket.emit('reply', data);
         });
     });
     
-    
-    
-    socket.on('send', function(text) 
+    socket.on('send', function(data) 
     {
-        remote.write(text);
-    });
-    
-    
-    
+        remote.write(data);
+    });    
+   
     socket.on('end', function()
     {
         remote.end();
