@@ -1,3 +1,5 @@
+/* relay.js, 
+
 var io = require('socket.io')(80);
 var net = require('net');
 
@@ -16,7 +18,6 @@ io.on('connection', function(socket)
         remote.on('data', function(buffer) 
         {
             var text = buffer.toString('utf-8');
-            
             socket.emit('reply', text);
         });
     });
