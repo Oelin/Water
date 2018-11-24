@@ -3,23 +3,32 @@ var net = require('net');
 
 
 
-io.on('connection', function(socket)
+io.on('connection', function(socket) 
 {
-    socket.on('create', function(address)
-    {
-        var remote = net.createConnection(address);
+    var remote;
     
-        remote.on('data', function(buffer)
+    
+    
+    socket.on('create', function(address) 
+    {
+        remote = net.createConnection(address);
+    
+        remote.on('data', function(buffer) 
         {
-            let text = buffer.toString('utf-8');
+            var text = buffer.toString('utf-8');
+            
             socket.emit('reply', text);
         });
     });
     
-    socket.on('send', function(text)
+    
+    
+    socket.on('send', function(text) 
     {
         remote.write(text);
     });
+    
+    
     
     socket.on('end', function()
     {
