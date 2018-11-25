@@ -3,7 +3,7 @@ This is achived by mapping data sent via web sockets to TCP stream sockets and v
 the Internet's principle technology is TCP/IP, such a mapping provides a channel by which 
 communication with any accessable Internet device, service or application is possible. */
 
-var io = require('socket.io')(2020);
+var io = require('socket.io')(80);
 
 var net = require('net');
 
