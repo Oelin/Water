@@ -1,4 +1,4 @@
-/* relay.js, mediates a virtual link between a clients (browsers) and remote Internet hosts. 
+/* relayd.js, mediates a virtual link between a clients (browsers) and remote Internet hosts. 
 This is achived by mapping data sent via web sockets to TCP stream sockets and visa-versa. As 
 the Internet's principle technology is TCP/IP, such a mapping provides a channel by which 
 communication with any accessable Internet device, service or application is possible. */
