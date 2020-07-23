@@ -1,17 +1,19 @@
-module.exports = port => {
-  
-  let server = require('socket.io')(port)
-  let net = require('net')
+let server = require('socket.io')
+let net = require('net')
 
-  server.on('connection', socket => {
-    let remote
+
+server.on('connection', socket => {
+  let remote
     
-    socket.on('create', address => {
-      remote = net.createConnection(address)
-      remote.on('data', data => socket.emit('data', data.toString()))
-    })
-    
-    socket.on('send', remote.write)
-    socket.on('end', remote.end)
+  socket.on('create', address => {
+    remote = net.createConnection(address)
+    remote.on('data', data => socket.emit('data', data.toString()))
   })
-}
+    
+  socket.on('send', remote.write)
+  socket.on('end', remote.end)
+})
+
+
+module.exports = server
+
