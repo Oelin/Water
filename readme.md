@@ -1,2 +1,2 @@
-## wtr
+## water
 WebSocket TCP relay.
