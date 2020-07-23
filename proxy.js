@@ -1,30 +1,15 @@
-var io = require('socket.io')(80)
+var server = require('socket.io')(1300)
 var net = require('net')
 
 
-
-io.on('connection', function(socket) 
-{
-    let remote
+server.on('connection', socket => {
+  let remote
     
-    socket.on('create', function(address) 
-    {
-        remote = net.createConnection(address)
+  socket.on('create', address => {
+    remote = net.createConnection(address)
+    remote.on('data', data => socket.emit('data', data.toString()))
+  })
     
-        remote.on('data', function(buffer) 
-        {
-            let data = buffer.toString()
-            socket.emit('reply', data)
-        })
-    })
-    
-    socket.on('send', function(data) 
-    {
-        remote.write(data)
-    });   
-   
-    socket.on('end', function()
-    {
-        remote.end()
-    })
+  socket.on('send', remote.write)
+  socket.on('end', remote.end)
 })
