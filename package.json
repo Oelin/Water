@@ -1,0 +1,5 @@
+{
+  "name": "water",
+  "description": "access TCP through web sockets.",
+  "version": "1.0.0"
+}
