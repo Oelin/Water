@@ -1,6 +1,6 @@
 module.exports = port => {
   
-  let server = require('socket.io')(1300)
+  let server = require('socket.io')(port)
   let net = require('net')
 
   server.on('connection', socket => {
