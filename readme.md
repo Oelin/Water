@@ -1,2 +1,2 @@
 ## water
-WebSocket TCP relay.
+'water' creates a bridge between WebSockets and TCP sockets.
